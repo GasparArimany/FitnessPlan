@@ -1,5 +1,4 @@
 import {
-  createReducer,
   createAction,
   createSlice,
   PayloadAction,
@@ -10,6 +9,7 @@ interface LoginState {
   username: string;
   password: string;
   token: string;
+  isAuth: boolean;
 }
 
 interface LoginPayload extends Partial<LoginState> {}
@@ -20,6 +20,7 @@ const initialState: LoginState = {
   username: '',
   password: '',
   token: '',
+  isAuth: false,
 };
 
 const slice = createSlice({
@@ -30,7 +31,7 @@ const slice = createSlice({
       ...state,
       ...action.payload,
     }),
-    loginError: (state, action) => state,
+    loginError: (state) => state,
   },
 });
 
@@ -39,14 +40,15 @@ const {name, actions, reducer} = slice;
 const loginUser = createAsyncThunk(
   login.type,
   async (payload: LoginPayload, thunksapi) => {
+    //Server API call
     setTimeout(() => {
       console.log(payload);
-      //fetch
       thunksapi.dispatch(
         actions.loginSuccess({
-          username: 'sarasaUsername',
-          password: 'sarasaPassword',
-          token: 'sarasaToken',
+          username: 'UsernameFromPayload',
+          password: 'PasswordFromPayload',
+          token: 'TokenFromServer',
+          isAuth: true, //user is authenticated
         }),
       );
     }, 3000);
