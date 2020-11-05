@@ -4,14 +4,12 @@ import MyPlan from './screens/MyPlan';
 import Profile from './screens/Profile';
 import Contact from './screens/Contact';
 import {useTypedSelector} from './hooks/useTypedSelector';
-import {createStackNavigator} from '@react-navigation/stack';
-// import {createNativeStackNavigator} from 'react-native-screens/native-stack';
 import {enableScreens} from 'react-native-screens';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import CustomIcon from './components/CustomIcon';
 
 enableScreens();
-const Stack = createStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
 const FitnessPlanApp = () => {
@@ -24,17 +22,32 @@ const FitnessPlanApp = () => {
       <BottomTab.Navigator initialRouteName="MyPlan">
         <BottomTab.Screen
           name="Profile"
-          options={{title: 'Mi Perfil'}}
+          options={{
+            title: 'Mi Perfil',
+            tabBarIcon: (props) => {
+              return <CustomIcon {...props} name="user-friends" />;
+            },
+          }}
           component={Profile}
         />
         <BottomTab.Screen
           name="MyPlan"
-          options={{title: 'Mi Plan'}}
+          options={{
+            title: 'Mi Plan',
+            tabBarIcon: (props) => {
+              return <CustomIcon {...props} name="user-edit" />;
+            },
+          }}
           component={MyPlan}
         />
         <BottomTab.Screen
           name="Contact"
-          options={{title: 'Contacto'}}
+          options={{
+            title: 'Contacto',
+            tabBarIcon: (props) => {
+              return <CustomIcon {...props} name="user-ninja" />;
+            },
+          }}
           component={Contact}
         />
       </BottomTab.Navigator>
