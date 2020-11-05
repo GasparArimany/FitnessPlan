@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {loginUser} from '../store/auth/reducer';
-import {View} from 'react-native';
-import {Button} from 'react-native-paper';
+import {View, SafeAreaView} from 'react-native';
+import { Button, TextInput } from 'react-native-paper';
 import LottieView from 'lottie-react-native';
+import {Formik} from 'formik';
 
 const Login: React.FC<any> = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,26 @@ const Login: React.FC<any> = () => {
           loop
         />
       ) : (
-        <Button onPress={handleLogin}>Login</Button>
+        <Formik
+        initialValues={{ email: '' }}
+        onSubmit={values => console.log(values)}
+      >
+        {({ handleChange, handleBlur, handleSubmit, values }) => (
+          <SafeAreaView>
+            {/* <TextInput
+              onChangeText={handleChange('email')}
+              onBlur={handleBlur('email')}
+              value={values.email}
+              underlineColor={"transparent"}
+            /> */}
+         <Button
+            icon={require('../public/password-icon.png')}
+            color="#00A9FF"
+            onPress={handleLogin}
+          >Login</Button>
+          </SafeAreaView>
+        )}
+      </Formik>
       )}
     </View>
   );
