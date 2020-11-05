@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {loginUser} from '../store/auth/reducer';
-import {View, StyleSheet} from 'react-native';
-import {Button} from 'react-native-paper';
+import {View, SafeAreaView, StyleSheet} from 'react-native';
+import {Button, TextInput} from 'react-native-paper';
 import LottieView from 'lottie-react-native';
+import {Formik} from 'formik';
 
 const Login: React.FC<any> = () => {
   const dispatch = useDispatch();
@@ -26,18 +27,26 @@ const Login: React.FC<any> = () => {
           loop
         />
       ) : (
-        <>
-          <Button
-            mode="outlined"
-            onPress={handleLogin}
-            style={styles.LoginButton}
-            labelStyle={styles.ButtonText}>
-            Acceder
-          </Button>
-          <Button labelStyle={{...styles.ButtonText, fontSize: 16}} mode="text">
-            Olvidaste la contraseña?
-          </Button>
-        </>
+        <Formik
+          initialValues={{email: ''}}
+          onSubmit={(values: any) => console.log(values)}>
+          {({}) => (
+            <SafeAreaView>
+              {/* <TextInput
+              onChangeText={handleChange('email')}
+              onBlur={handleBlur('email')}
+              value={values.email}
+              underlineColor={"transparent"}
+            /> */}
+              <Button
+                icon={require('../public/password-icon.png')}
+                color="#00A9FF"
+                onPress={handleLogin}>
+                Login
+              </Button>
+            </SafeAreaView>
+          )}
+        </Formik>
       )}
     </View>
   );
