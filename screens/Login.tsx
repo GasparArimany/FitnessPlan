@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useContext, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {loginUser} from '../store/auth/reducer';

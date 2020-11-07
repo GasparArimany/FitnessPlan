@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-const Workout = () => {
+const News = () => {
   return (
     <View>
-      <Text>Workout page</Text>
+      <Text>News page</Text>
     </View>
   );
 };
 
-export default Workout;
+export default News;

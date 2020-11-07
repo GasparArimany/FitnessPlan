@@ -34,7 +34,8 @@ const App = () => {
             <View style={styles.splash}>
               <ImageBackground
                 source={require('./public/splash.png')}
-                style={styles.image}></ImageBackground>
+                style={styles.image}
+              />
             </View>
           ) : (
             <FitnessPlanApp />

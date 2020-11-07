@@ -1,13 +1,15 @@
 import React from 'react';
 import Login from './screens/Login';
-import MyPlan from './screens/MyPlan';
+import News from './screens/Dashboard';
 import Profile from './screens/Profile';
 import Contact from './screens/Contact';
 import {useTypedSelector} from './hooks/useTypedSelector';
 import {enableScreens} from 'react-native-screens';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import CustomIcon from './components/CustomIcon';
+// import CustomIcon from './components/CustomIcon';
+import {Image} from 'react-native';
+import Dashboard from './screens/Dashboard';
 
 enableScreens();
 const BottomTab = createBottomTabNavigator();
@@ -19,33 +21,33 @@ const FitnessPlanApp = () => {
     <Login />
   ) : (
     <NavigationContainer>
-      <BottomTab.Navigator initialRouteName="MyPlan">
+      <BottomTab.Navigator initialRouteName="News">
         <BottomTab.Screen
           name="Profile"
           options={{
             title: 'Mi Perfil',
-            tabBarIcon: (props) => {
-              return <CustomIcon {...props} name="user-friends" />;
+            tabBarIcon: () => {
+              return <Image source={require('./public/newspaper.png')} />;
             },
           }}
           component={Profile}
         />
         <BottomTab.Screen
-          name="MyPlan"
+          name="News"
           options={{
-            title: 'Mi Plan',
-            tabBarIcon: (props) => {
-              return <CustomIcon {...props} name="user-edit" />;
+            title: 'Noticias',
+            tabBarIcon: () => {
+              return <Image source={require('./public/newspaper.png')} />;
             },
           }}
-          component={MyPlan}
+          component={Dashboard}
         />
         <BottomTab.Screen
           name="Contact"
           options={{
             title: 'Contacto',
-            tabBarIcon: (props) => {
-              return <CustomIcon {...props} name="user-ninja" />;
+            tabBarIcon: () => {
+              return <Image source={require('./public/paper-plane.png')} />;
             },
           }}
           component={Contact}
